@@ -21,7 +21,6 @@ namespace Instagram.namespaces.NetworkNamespace {
             email.IsBodyHtml = isHtml;
             email.Subject = notification.Title;
             email.Body = notification.Text;
-            isHtml = false;
 
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
@@ -35,9 +34,11 @@ namespace Instagram.namespaces.NetworkNamespace {
                     * unless an exception is thrown.
                     */
                 smtp.Send(email);
+                isHtml = false;
             }
             catch (SmtpException ex) {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.ToString());
             }
 
         }
